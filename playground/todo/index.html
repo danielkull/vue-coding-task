@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My own Vue instance</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>Todo</h1>
+        <input type="text" name="" id="todo" v-model="newTodo">
+        <button v-on:click="addNewTodo">Add</button>
+        <hr>
+        <h2>Filter</h2>
+        <input type="radio" name="filter" id="all" v-on:click="currentFilter= ''"><label for="all">All</label>
+        <input type="radio" name="filter" id="done" v-on:click="currentFilter= 'done'"><label for="done">Done</label>
+        <input type="radio" name="filter" id="open" v-on:click="currentFilter= 'open'"><label for="open">Open</label>
+        <hr>
+        <ul class="todos">
+            <li v-for="todo of filterElements()">
+                <input id="todo" type="checkbox" v-bind:checked="todo.done">
+                <label for="todo">{{ todo.description }}</label>
+            </li>
+        </ul>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
