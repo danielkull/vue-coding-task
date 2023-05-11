@@ -23,18 +23,26 @@
         <div id="app" class="inside">
             <div class="tab-box">
                 <nav class="tab-box__nav">
-                    <button class="tab-box__nav-item">Tab 1</button>
-                    <button class="tab-box__nav-item tab-box__nav-item--active">
-                        Tab 2
-                    </button>
-                    <button class="tab-box__nav-item">Tab 3</button>
+
+                    <button @click="activeTab = 1" class="tab-box__nav-item"
+                        :class="activeTab === 1 ? activeBtnStyle : '' ">Tab 1</button>
+
+                    <button @click="activeTab = 2" class="tab-box__nav-item"
+                        :class="activeTab === 2 ? activeBtnStyle : '' ">Tab 2</button>
+
+                    <button @click="activeTab = 3" class="tab-box__nav-item"
+                        :class="activeTab === 3 ? activeBtnStyle : '' ">Tab 3</button>
+
                 </nav>
                 <div class="tab-box__content tab-box tab-box__content--active">
-                    <section class="tab-box__content-item">Content 1</section>
-                    <section class="tab-box__content-item tab-box__content-item--active">
-                        Content 2
+                    <section class="tab-box__content-item" :class="activeTab === 1 ? activeContentStyle : '' ">Content 1
                     </section>
-                    <section class="tab-box__content-item">Content 3</section>
+
+                    <section class="tab-box__content-item " :class="activeTab === 2 ? activeContentStyle : '' ">Content
+                        2</section>
+
+                    <section class="tab-box__content-item" :class="activeTab === 3 ? activeContentStyle : '' ">Content 3
+                    </section>
                 </div>
             </div>
         </div>
