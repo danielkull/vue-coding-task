@@ -1,4 +1,8 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 
-createApp(App).mount("#app");
+import MyFirstComponent from "@/components/MyFirstComponent";
+
+const app = createApp(App);
+app.component("MyFirstComponent", MyFirstComponent);
+app.mount("#app");
