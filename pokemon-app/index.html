@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <select v-model="currentFilter">
+            <option value="">All</option>
+            <option v-for="type of getAllTypes" v-bind:value="type">{{ type }}</option>
+        </select>
+        <!-- <pre> Shows Data in a more readable form -->
+        <!--     <pre>  -->
+        <!--     {{ pokemonData }} -->
+        <!--     </pre> -->
+        <p>Anzahl Pokemon ist {{ filteredPokemonData.length }}</p>
+        <!-- <input type="text" v-model="searchQuery">
+        <p>{{ searchQuery }}</p> -->
+        <div class="pokemon-list">
+            <div class="pokemon-card pokemon-card--electro" v-for="pokemon of filteredPokemonData">
+                <figure class="pokemon-card_figure">
+                    <img v-bind:src="pokemon.img" alt="Pikachu" class="pokemon-card_img">
+                    <figcaption class="pokemon-card__caption">
+                        <h3 class="pokemon-card__name">{{ pokemon.name }}</h3>
+                        <hr class="pokemon-card_spacer">
+                        <div class="pokemon-card__type">{{ pokemon.type }}</div>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
