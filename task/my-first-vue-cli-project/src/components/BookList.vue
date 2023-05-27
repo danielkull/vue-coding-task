@@ -11,10 +11,11 @@
       </thead>
       <tbody>
         <BookListRow
-          v-for="book in books"
+          v-for="(book, index) in books"
           :key="book.isbn"
           :title="book.title"
           :isbn="book.isbn"
+          :index="index"
           class="table-item__table-row"
         />
       </tbody>
