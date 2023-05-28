@@ -1,9 +1,10 @@
 <template>
-  <button :class="styling">{{ text }}</button>
+  <button :class="styling" @click="toggleBookmarkBtn">{{ text }}</button>
 </template>
 
 <script>
 export default {
+  emit: ["changeBookmark"],
   props: {
     text: {
       type: String,
@@ -20,6 +21,12 @@ export default {
   computed: {
     styling() {
       return ["btn", `btn--${this.variant}`];
+    },
+  },
+  methods: {
+    toggleBookmarkBtn() {
+      this.$emit("changeBookmark");
+      // return (this.isBookmarked = !this.isBookmarked);
     },
   },
 };

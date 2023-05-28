@@ -2,7 +2,13 @@
   <tr class="table-item__table-row">
     <td>{{ title }}</td>
     <td>{{ isbn }}</td>
-    <td><BaseButton text="Add Book" :variant="oddOrEven" /></td>
+    <td>
+      <BaseButton
+        :text="buttonText"
+        :variant="oddOrEven"
+        @changeBookmark="checkBookmarked"
+      />
+    </td>
   </tr>
 </template>
 
@@ -14,6 +20,12 @@ export default {
     BaseButton,
   },
   name: "BookListRow",
+  data() {
+    return {
+      buttonText: "Add Bookmark",
+      isBookmarked: false,
+    };
+  },
   props: {
     title: String,
     isbn: String,
@@ -25,6 +37,16 @@ export default {
         return "secondary";
       } else {
         return "primary";
+      }
+    },
+  },
+  methods: {
+    checkBookmarked() {
+      this.isBookmarked = !this.isBookmarked;
+      if (this.isBookmarked) {
+        return (this.buttonText = "Remove Button");
+      } else {
+        return (this.buttonText = "Add Bookmark");
       }
     },
   },
