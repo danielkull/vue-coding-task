@@ -1,8 +1,14 @@
 <template>
-  <h2>{{ headline }}</h2>
-  <div class="intro-text">{{ introText }}</div>
+  <slot name="header"
+    ><h2>{{ headline }}</h2>
+  </slot>
+  <div class="intro-text"><slot /></div>
   <ul>
-    <li v-for="item in listItems" :key="item.id">{{ item.text }}</li>
+    <li v-for="item in listItems" :key="item.id">
+      <slot :item="item" name="list-item" greeting="Hallo">
+        {{ item.text }}
+      </slot>
+    </li>
   </ul>
 </template>
 
@@ -11,7 +17,6 @@ const timestamp = +new Date();
 export default {
   props: {
     headline: String,
-    introText: String,
     listItems: {
       type: Array,
       default: () => [{ text: "No items exists", id: timestamp }],

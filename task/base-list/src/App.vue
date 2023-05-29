@@ -1,14 +1,24 @@
 <template>
-  <BaseList
-    :headline="fruitList.headline"
-    :intro-text="fruitList.introText"
-    :list-items="fruitList.data"
-  />
-  <BaseList
-    :headline="attendeeList.headline"
-    :intro-text="attendeeList.introText"
-    :list-items="attendeeList.data"
-  />
+  <BaseList :headline="fruitList.headline" :list-items="fruitList.data">
+    <template v-slot:header>
+      <h5>{{ fruitList.headline }}</h5>
+    </template>
+    {{ fruitList.introText }}
+  </BaseList>
+
+  <BaseList :headline="attendeeList.headline" :list-items="attendeeList.data">{{
+    attendeeList.introText
+  }}</BaseList>
+
+  <BaseList headline="All fruits with emojis" :list-items="fruitList.data">
+    <template #list-item="scopedData">
+      {{ scopedData.item.emoji }} - {{ scopedData.item.text }}
+      <br />
+      <strong>Full Data:</strong>
+      {{ scopedData }}
+    </template>
+    All fruits with emjis in a list</BaseList
+  >
 </template>
 
 <script>
