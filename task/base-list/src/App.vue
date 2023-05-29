@@ -1,8 +1,20 @@
 <template>
+  <BaseList headline="All Bookmonkey Books" :list-items="books">
+    <p>A list with alot of books</p>
+    <template #list-item="{ item }">
+      <h4>Booktitle: {{ item.title }}</h4>
+      <pre>
+       ISBN: {{ item.isbn }}
+
+      </pre>
+    </template>
+  </BaseList>
+
   <BaseList :headline="fruitList.headline" :list-items="fruitList.data">
     <template v-slot:header>
       <h5>{{ fruitList.headline }}</h5>
     </template>
+
     {{ fruitList.introText }}
   </BaseList>
 
@@ -17,8 +29,8 @@
       <strong>Full Data:</strong>
       {{ scopedData }}
     </template>
-    All fruits with emjis in a list</BaseList
-  >
+    <p>fruits with emjis in a list</p>
+  </BaseList>
 </template>
 
 <script>
@@ -31,6 +43,7 @@ export default {
   },
   data() {
     return {
+      books: [],
       fruitList: {
         headline: "Fruits",
         introText: "A list of available fruits",
@@ -74,6 +87,10 @@ export default {
         ],
       },
     };
+  },
+  async created() {
+    const response = await fetch("http://localhost:4730/books");
+    this.books = await response.json();
   },
 };
 </script>
