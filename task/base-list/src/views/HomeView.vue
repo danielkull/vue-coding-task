@@ -1,15 +1,4 @@
 <template>
-  <BaseList headline="All Bookmonkey Books" :list-items="books">
-    <p>A list with alot of books</p>
-    <template #list-item="{ item }">
-      <h4>Booktitle: {{ item.title }}</h4>
-      <pre>
-       ISBN: {{ item.isbn }}
-
-      </pre>
-    </template>
-  </BaseList>
-
   <BaseList :headline="fruitList.headline" :list-items="fruitList.data">
     <template v-slot:header>
       <h5>{{ fruitList.headline }}</h5>
@@ -43,7 +32,6 @@ export default {
   },
   data() {
     return {
-      books: [],
       fruitList: {
         headline: "Fruits",
         introText: "A list of available fruits",
@@ -89,10 +77,6 @@ export default {
     };
   },
   // Works only if you run in terminal: bookmonkey-api
-  async created() {
-    const response = await fetch("http://localhost:4730/books");
-    this.books = await response.json();
-  },
 };
 </script>
 
